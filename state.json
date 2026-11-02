@@ -2,29 +2,30 @@
   "sites": {
     "ole": {
       "failures": 0,
-      "successes": 1,
+      "successes": 2,
       "open": false
     },
     "fortaleza": {
       "failures": 0,
-      "successes": 1,
+      "successes": 2,
       "open": false
     },
     "cumbuco": {
-      "failures": 1,
+      "failures": 2,
       "successes": 0,
-      "open": false
+      "open": true,
+      "issue": 1
     },
     "aguia": {
       "failures": 0,
-      "successes": 1,
+      "successes": 2,
       "open": false
     },
     "monitor": {
       "failures": 0,
-      "successes": 1,
+      "successes": 2,
       "open": false
     }
   },
-  "lastRun": "41403353795"
+  "lastRun": "41403412573"
 }
