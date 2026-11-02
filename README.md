@@ -14,7 +14,7 @@ A successful workflow means the monitoring pipeline completed; check the run sum
 
 An isolated failing run stays quiet. Two consecutive failed runs open one incident issue. Continued failures create no repeat messages. Two successful runs close the issue with a recovery comment. Runner/setup failures are tracked as a separate monitoring-system incident and never interpreted as website recovery. Each browser test also retries once. Expect approximately 30–60 minutes for confirmation, plus GitHub scheduling/runner delays; this is not an uptime SLA.
 
-See [active incidents](https://github.com/kaj-jensen/website-monitoring/issues) and [latest checks](https://github.com/kaj-jensen/website-monitoring/actions/workflows/monitor.yml). Each run’s summary shows observed results and incident status. The `monitor-state` branch holds only counters and issue numbers. The repository has an issue-only subscription, with email routed to `kaj.jensen@outlook.com`. Pilot test delivery was verified on 2 November 2026.
+See [active incidents](https://github.com/kaj-jensen/website-monitoring/issues) and [latest checks](https://github.com/kaj-jensen/website-monitoring/actions/workflows/monitor.yml). Each run’s summary shows observed results and incident status. The `monitor-state` branch holds only counters and issue numbers. The repository has an issue-only subscription, with email routed to the owner’s configured GitHub notification address. Pilot test delivery was verified on 2 November 2026.
 
 ## Zero-cost boundary
 
