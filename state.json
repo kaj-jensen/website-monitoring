@@ -1,0 +1,30 @@
+{
+  "sites": {
+    "ole": {
+      "failures": 0,
+      "successes": 1,
+      "open": false
+    },
+    "fortaleza": {
+      "failures": 0,
+      "successes": 1,
+      "open": false
+    },
+    "cumbuco": {
+      "failures": 1,
+      "successes": 0,
+      "open": false
+    },
+    "aguia": {
+      "failures": 0,
+      "successes": 1,
+      "open": false
+    },
+    "monitor": {
+      "failures": 0,
+      "successes": 1,
+      "open": false
+    }
+  },
+  "lastRun": "41403353795"
+}
