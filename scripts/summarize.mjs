@@ -1,5 +1,5 @@
 import { readFileSync, appendFileSync } from 'node:fs';
-const expected = { ole: 2, fortaleza: 4, cumbuco: 2, aguia: 4 };
+const expected = { ole: 2, fortaleza: 4, cumbuco: 2, aguia: 4, terceiro: 2 };
 let observed = {monitor: false};
 try {
   const report = JSON.parse(readFileSync('results.json', 'utf8'));
@@ -8,7 +8,7 @@ try {
   visit(report);
   const counts = Object.fromEntries(Object.keys(expected).map(key => [key, []]));
   for (const spec of specs) {
-    const site = /^\[(ole|fortaleza|cumbuco|aguia)\]/.exec(spec.title)?.[1];
+    const site = /^\[(ole|fortaleza|cumbuco|aguia|terceiro)\]/.exec(spec.title)?.[1];
     if (site) counts[site].push(...spec.tests);
   }
   if (report.errors?.length || Object.entries(expected).some(([site, count]) => counts[site].length !== count)) throw new Error('Incomplete test report');

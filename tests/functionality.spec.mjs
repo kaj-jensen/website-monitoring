@@ -160,3 +160,23 @@ for (const locale of ['en', 'pt']) {
     await imageLoaded(page.locator('main img').first());
   });
 }
+
+test('[terceiro] symbols, attribution, mobile navigation and contact validation', async ({ page }, project) => {
+  await open(page, 'https://terceirotestamento.com.br/');
+  await decline(page);
+  await menu(page, project, '.mobile-menu-toggle', '#site-navigation');
+  await follow(page, page.locator('#site-navigation a[href="/simbolos"]').first());
+  const symbol = page.locator('.symbol-index-list a').first();
+  await follow(page, symbol);
+  await imageLoaded(page.locator('.symbol-full-image'));
+  await expect(page.locator('.symbol-copyright')).toContainText('Martinus');
+  await expect(page.locator('.symbol-full-figure a')).toHaveAttribute('href', /https:\/\/www\.martinus\.dk\//);
+  await menu(page, project, '.mobile-menu-toggle', '#site-navigation');
+  await follow(page, page.locator('#site-navigation a[href="/contato"]').first());
+  const form = page.locator('form[action="/api/contato"]');
+  await expect(form.locator('[name="name"]')).toBeVisible();
+  await expect(form.locator('[name="email"]')).toBeVisible();
+  expect(await form.evaluate(form => form.checkValidity())).toBe(false);
+  await form.locator('[name="email"]').fill('invalid-email');
+  expect(await form.locator('[name="email"]').evaluate(input => input.validity.typeMismatch)).toBe(true);
+});

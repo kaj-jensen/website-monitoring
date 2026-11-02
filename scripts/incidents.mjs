@@ -1,6 +1,6 @@
 import { readFileSync, appendFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
-export const sites = ['ole', 'fortaleza', 'cumbuco', 'aguia', 'monitor'];
+export const sites = ['ole', 'fortaleza', 'cumbuco', 'aguia', 'terceiro', 'monitor'];
 export function transition(previous = {}, ok) {
   const state = { failures: 0, successes: 0, open: false, ...previous };
   state.failures = ok ? 0 : Math.min(2, state.failures + 1);
