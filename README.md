@@ -1,12 +1,12 @@
 # Website functionality monitoring
 
-Free monitoring for public journeys on Ole Therkelsen, Fortaleza Real Estate (English and Portuguese domains), Cumbuco Rentals, and Águia Amazonas (English and Portuguese).
+Free monitoring for public journeys on Ole Therkelsen, Fortaleza Real Estate (English and Portuguese domains), Cumbuco Rentals, Águia Amazonas (English and Portuguese), and O Terceiro Testamento.
 
-Every 30 minutes, Chromium runs 12 desktop/mobile journeys. The checks exercise lecture search, property filters and galleries, rental pages and invalid-date handling, tour search and filters, language links, images, contact-link targets, and mobile menus. No real leads or WhatsApp messages are sent. Enquiry writes are blocked; ordinary Cloudflare browser verification may run. CAPTCHAs are never solved. These checks do not prove successful email delivery, WhatsApp delivery, third-party video playback or real visitor behavior.
+Every 30 minutes, Chromium runs 14 desktop/mobile journeys. The checks exercise lecture search, property filters and galleries, rental pages and invalid-date handling, tour search and filters, language links, symbol navigation and attribution, images, contact-link targets, contact validation, and mobile menus. No real leads or WhatsApp messages are sent. Enquiry writes are blocked; ordinary Cloudflare browser verification may run. CAPTCHAs are never solved. These checks do not prove successful email delivery, WhatsApp delivery, third-party video playback or real visitor behavior.
 
 ## Pilot status — 2 November 2026
 
-Clarity is live on all four sites, with strict masking and verified consent/withdrawal behavior. All 12 desktop/mobile journeys pass from the local Mac and the standard free GitHub cloud runner. With the owner’s explicit approval on 2 November 2026, Bot Fight Mode was turned off for cumbuco.net only to allow the monitoring browser to complete the rental journey. Browser Integrity Check and the enquiry Turnstile protection remain enabled. Incident #1 closes automatically after two consecutive successful cloud runs.
+Clarity is live on all five sites, with strict masking and verified consent/withdrawal behavior. All 14 desktop/mobile journeys pass from the local Mac and the standard free GitHub cloud runner. With the owner’s explicit approval on 2 November 2026, Bot Fight Mode was turned off for cumbuco.net only to allow the monitoring browser to complete the rental journey. Browser Integrity Check and the enquiry Turnstile protection remain enabled. Incident #1 closes automatically after two consecutive successful cloud runs.
 
 A successful workflow means the monitoring pipeline completed; check the run summary and incident issues for individual website health. Google PageSpeed verification for Fortaleza was incomplete because its free quota returned HTTP 429.
 
