@@ -34,7 +34,7 @@ export async function publish() {
     const previous = { ...saved.sites[site], open: Boolean(existing) };
     const { state, action } = transition(previous, observed[site]);
     if (action === 'open') {
-      const issue = await api('issues', 'POST', { title, assignees: ['kaj-jensen'], body: `<!-- website-monitor -->\nTwo consecutive monitoring runs failed after browser retries.\n\n[View the failing check and logs](${runUrl}).\n\nThis incident receives no repeat alerts while it remains open. It closes after two consecutive successful runs. No real enquiries are submitted by these checks.` });
+      const issue = await api('issues', 'POST', { title, body: `<!-- website-monitor -->\nTwo consecutive monitoring runs failed after browser retries.\n\n[View the failing check and logs](${runUrl}).\n\nThis incident receives no repeat alerts while it remains open. It closes after two consecutive successful runs. No real enquiries are submitted by these checks.` });
       state.issue = issue.number;
     } else if (action === 'close' && existing) {
       await api(`issues/${existing.number}/comments`, 'POST', { body: `Recovered: two consecutive successful monitoring runs. [Latest verification](${runUrl}).` });

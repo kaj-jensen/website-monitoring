@@ -4,13 +4,20 @@ import { test, expect } from '@playwright/test';
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => {
     const request = route.request();
-    if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method())) return route.abort();
+    const url = new URL(request.url());
+    const verification = request.method() === 'POST' && (url.hostname === 'challenges.cloudflare.com' || url.pathname.startsWith('/cdn-cgi/challenge-platform/'));
+    if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method()) && !verification) return route.abort();
     return route.continue();
   });
 });
 async function open(page, url) {
   const response = await page.goto(url, { waitUntil: 'load' });
-  expect(response?.status(), url).toBe(200);
+  if (response?.status() === 403 && response.headers()['cf-mitigated'] === 'challenge') {
+    // Let Cloudflare's ordinary browser verification complete. Never solve a CAPTCHA.
+    await expect(page.locator('main h1, .hero h1').first(), 'Cloudflare challenged the monitoring browser; site functionality could not be assessed').toBeVisible({ timeout: 30_000 });
+    const verified = await page.request.get(page.url());
+    expect(verified.status(), 'Verified browser still cannot access the site').toBe(200);
+  } else expect(response?.status(), url).toBe(200);
   await expect(page.locator('main h1, .hero h1').first()).toBeVisible();
 }
 async function imageLoaded(image) {

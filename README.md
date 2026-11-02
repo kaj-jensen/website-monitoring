@@ -2,13 +2,13 @@
 
 Free monitoring for public journeys on Ole Therkelsen, Fortaleza Real Estate (English and Portuguese domains), Cumbuco Rentals, and Águia Amazonas (English and Portuguese).
 
-Every 30 minutes, Chromium runs 12 desktop/mobile journeys. The checks exercise lecture search, property filters and galleries, rental pages and invalid-date handling, tour search and filters, language links, images, contact-link targets, and mobile menus. No real leads or WhatsApp messages are sent. Browser writes are blocked. These checks do not prove successful email delivery, WhatsApp delivery, third-party video playback or real visitor behavior.
+Every 30 minutes, Chromium runs 12 desktop/mobile journeys. The checks exercise lecture search, property filters and galleries, rental pages and invalid-date handling, tour search and filters, language links, images, contact-link targets, and mobile menus. No real leads or WhatsApp messages are sent. Enquiry writes are blocked; ordinary Cloudflare browser verification may run. CAPTCHAs are never solved. These checks do not prove successful email delivery, WhatsApp delivery, third-party video playback or real visitor behavior.
 
 ## Incidents
 
-An isolated failing run stays quiet. Two consecutive failed runs open one issue assigned to `kaj-jensen`. Continued failures create no repeat messages. Two successful runs close the issue with a recovery comment. Runner/setup failures are tracked as a separate monitoring-system incident and never interpreted as website recovery. Each browser test also retries once. Expect approximately 30–60 minutes for confirmation, plus GitHub scheduling/runner delays; this is not an uptime SLA.
+An isolated failing run stays quiet. Two consecutive failed runs open one incident issue. Continued failures create no repeat messages. Two successful runs close the issue with a recovery comment. Runner/setup failures are tracked as a separate monitoring-system incident and never interpreted as website recovery. Each browser test also retries once. Expect approximately 30–60 minutes for confirmation, plus GitHub scheduling/runner delays; this is not an uptime SLA.
 
-See [active incidents](https://github.com/kaj-jensen/website-monitoring/issues) and [latest checks](https://github.com/kaj-jensen/website-monitoring/actions/workflows/monitor.yml). Each run’s summary shows observed results and incident status. The `monitor-state` branch holds only counters and issue numbers. Notification email follows the repository watch subscription and GitHub account notification settings. Confirm the desired address and email delivery before relying on notifications.
+See [active incidents](https://github.com/kaj-jensen/website-monitoring/issues) and [latest checks](https://github.com/kaj-jensen/website-monitoring/actions/workflows/monitor.yml). Each run’s summary shows observed results and incident status. The `monitor-state` branch holds only counters and issue numbers. The repository has an issue-only subscription, with email routed to `kaj.jensen@outlook.com`. Pilot test delivery was verified on 2 November 2026.
 
 ## Zero-cost boundary
 
