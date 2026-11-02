@@ -1,0 +1,65 @@
+name: Website functionality monitor
+on:
+  schedule:
+    - cron: '13,43 * * * *'
+  workflow_dispatch:
+    inputs:
+      notification_test:
+        description: Send one clearly labelled alert-delivery test
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: website-monitor
+  cancel-in-progress: false
+jobs:
+  checks:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      results: ${{ steps.summary.outputs.results }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run test:alerts
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+        continue-on-error: true
+      - id: summary
+        if: always()
+        run: node scripts/summarize.mjs
+  incidents:
+    needs: checks
+    if: always() && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Confirm incidents and recoveries without repeat alerts
+        run: node scripts/incidents.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MONITOR_RESULTS: ${{ needs.checks.outputs.results || '{"monitor":false}' }}
+          REPO_VISIBILITY: ${{ github.event.repository.visibility }}
+      - name: Send an explicitly requested alert-delivery test
+        if: github.event_name == 'workflow_dispatch' && inputs.notification_test
+        run: node scripts/notification-test.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

@@ -1,0 +1,12 @@
+{
+  "name": "kaj-website-monitoring",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:alerts": "node --test scripts/incidents.test.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1"
+  }
+}
