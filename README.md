@@ -6,7 +6,7 @@ Every 30 minutes, Chromium runs 12 desktop/mobile journeys. The checks exercise 
 
 ## Pilot status — 2 November 2026
 
-Clarity is live on all four sites, with strict masking and verified consent/withdrawal behavior. All 12 journeys pass from the local Mac. Cloud checks pass for Ole, Fortaleza and Águia. Cumbuco’s rental navigation is challenged by Cloudflare Bot Fight Mode from both standard Ubuntu and macOS GitHub runners; incident #1 records this monitoring-access limitation. No security setting has been weakened.
+Clarity is live on all four sites, with strict masking and verified consent/withdrawal behavior. All 12 desktop/mobile journeys pass from the local Mac and the standard free GitHub cloud runner. With the owner’s explicit approval on 2 November 2026, Bot Fight Mode was turned off for cumbuco.net only to allow the monitoring browser to complete the rental journey. Browser Integrity Check and the enquiry Turnstile protection remain enabled. Incident #1 closes automatically after two consecutive successful cloud runs.
 
 A successful workflow means the monitoring pipeline completed; check the run summary and incident issues for individual website health. Google PageSpeed verification for Fortaleza was incomplete because its free quota returned HTTP 429.
 
