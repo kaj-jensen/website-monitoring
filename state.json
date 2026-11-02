@@ -11,8 +11,8 @@
       "open": false
     },
     "cumbuco": {
-      "failures": 2,
-      "successes": 0,
+      "failures": 0,
+      "successes": 1,
       "open": true,
       "issue": 1
     },
@@ -27,5 +27,5 @@
       "open": false
     }
   },
-  "lastRun": "41487531771"
+  "lastRun": "41497440192"
 }
