@@ -12,9 +12,8 @@
     },
     "cumbuco": {
       "failures": 0,
-      "successes": 1,
-      "open": true,
-      "issue": 1
+      "successes": 2,
+      "open": false
     },
     "aguia": {
       "failures": 0,
@@ -27,5 +26,5 @@
       "open": false
     }
   },
-  "lastRun": "41497440192"
+  "lastRun": "41497548801"
 }
