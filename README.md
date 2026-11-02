@@ -4,6 +4,12 @@ Free monitoring for public journeys on Ole Therkelsen, Fortaleza Real Estate (En
 
 Every 30 minutes, Chromium runs 12 desktop/mobile journeys. The checks exercise lecture search, property filters and galleries, rental pages and invalid-date handling, tour search and filters, language links, images, contact-link targets, and mobile menus. No real leads or WhatsApp messages are sent. Enquiry writes are blocked; ordinary Cloudflare browser verification may run. CAPTCHAs are never solved. These checks do not prove successful email delivery, WhatsApp delivery, third-party video playback or real visitor behavior.
 
+## Pilot status — 2 November 2026
+
+Clarity is live on all four sites, with strict masking and verified consent/withdrawal behavior. All 12 journeys pass from the local Mac. Cloud checks pass for Ole, Fortaleza and Águia. Cumbuco’s rental navigation is challenged by Cloudflare Bot Fight Mode from both standard Ubuntu and macOS GitHub runners; incident #1 records this monitoring-access limitation. No security setting has been weakened.
+
+A successful workflow means the monitoring pipeline completed; check the run summary and incident issues for individual website health. Google PageSpeed verification for Fortaleza was incomplete because its free quota returned HTTP 429.
+
 ## Incidents
 
 An isolated failing run stays quiet. Two consecutive failed runs open one incident issue. Continued failures create no repeat messages. Two successful runs close the issue with a recovery comment. Runner/setup failures are tracked as a separate monitoring-system incident and never interpreted as website recovery. Each browser test also retries once. Expect approximately 30–60 minutes for confirmation, plus GitHub scheduling/runner delays; this is not an uptime SLA.
