@@ -12,6 +12,9 @@ test.beforeEach(async ({ page }) => {
 });
 async function open(page, url) {
   const response = await page.goto(url, { waitUntil: 'load' });
+  await verifyPage(page, response, url);
+}
+async function verifyPage(page, response, url) {
   if (response?.status() === 403 && response.headers()['cf-mitigated'] === 'challenge') {
     // Let Cloudflare's ordinary browser verification complete. Never solve a CAPTCHA.
     await expect(page.locator('main h1, .hero h1').first(), 'Cloudflare challenged the monitoring browser; site functionality could not be assessed').toBeVisible({ timeout: 30_000 });
@@ -29,9 +32,13 @@ async function follow(page, link) {
   await expect(link).toBeVisible();
   const href = await link.getAttribute('href');
   expect(href).toBeTruthy();
-  await link.click();
-  await expect(page).toHaveURL(new URL(href, page.url()).href);
-  await expect(page.locator('h1').first()).toBeVisible();
+  const target = new URL(href, page.url()).href;
+  const [response] = await Promise.all([
+    page.waitForNavigation({ waitUntil: 'load' }),
+    link.click(),
+  ]);
+  await expect(page).toHaveURL(target);
+  await verifyPage(page, response, target);
 }
 async function decline(page) {
   const button = page.locator('[data-analytics-choice="denied"], [data-consent="denied"]').first();
